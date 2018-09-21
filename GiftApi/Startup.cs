@@ -39,11 +39,6 @@ namespace GiftApi
                 .AddSingleton<IGiftRepository, MemoryGiftRepository>();
 
             services
-                .AddResponseCaching(options =>
-                {
-                });
-
-            services
                 .AddMvc()
                 .AddXmlSerializerFormatters()
                 .AddJsonOptions(options =>
@@ -61,8 +56,11 @@ namespace GiftApi
             }
 
             app.UseResponseCompression();
-            app.UseResponseCaching();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("Home", "",
+                    new { controller = "Home", action = "Index" });
+            });
         }
     }
 }

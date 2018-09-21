@@ -13,10 +13,11 @@ using Newtonsoft.Json;
 
 namespace GiftApi.Controllers
 {
+    [ApiController]
     [FormatFilter]
     [Route("[controller]")]
     [Route("[controller].{format}")]
-    public class GiftsController : Controller
+    public class GiftsController : ControllerBase
     {
         private readonly IGiftRepository _giftRepository;
 
@@ -49,7 +50,7 @@ namespace GiftApi.Controllers
         //}
 
         [HttpGet]
-        [ResponseCache(Duration = 60)]
+        //[ResponseCache(Duration = 60)]
         public ListResponse<Gift> GetGifts()
         {
             var gifts = _giftRepository.Gifts;
