@@ -27,6 +27,8 @@ namespace GiftApi.Controllers
         //    return Task.FromResult((IActionResult)response);
         //}
 
+        [HttpGet]
+        [Route("{id}")]
         public Task<Gift> GetGift(Guid id) => _mediator.Send(new GetGift { Id = id });
     }
 }
